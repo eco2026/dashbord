@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Tableau de Bord | Économie & Finances - Notes & Masquage</title>
-    <!-- Font Awesome 6 -->
+    <title>Tableau de Bord | Économie & Finances - Problèmes économiques et sociaux</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(145deg, #f4f7fc 0%, #eef2f5 100%);
             font-family: 'Inter', sans-serif;
             padding: 2rem 1.5rem;
             color: #1a2c3e;
         }
-
-        .dashboard-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* En-tête */
+        .dashboard-container { max-width: 1400px; margin: 0 auto; }
         .header {
             margin-bottom: 2rem;
             display: flex;
@@ -36,7 +23,6 @@
             align-items: flex-end;
             gap: 1rem;
         }
-
         .title-section h1 {
             font-size: 1.9rem;
             font-weight: 700;
@@ -48,25 +34,12 @@
             align-items: center;
             gap: 12px;
         }
-
-        .title-section h1 i {
-            background: none;
-            color: #1e6f5c;
-            font-size: 2rem;
-        }
-
-        .title-section p {
-            color: #4b6a85;
-            font-weight: 500;
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
-
+        .title-section h1 i { background: none; color: #1e6f5c; font-size: 2rem; }
+        .title-section p { color: #4b6a85; font-weight: 500; margin-top: 8px; font-size: 0.95rem; }
         .stats-badge {
             background: white;
             padding: 0.6rem 1.2rem;
             border-radius: 60px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             font-weight: 600;
             font-size: 0.9rem;
             color: #1e4668;
@@ -74,14 +47,7 @@
             display: flex;
             gap: 15px;
         }
-
-        .stats-badge span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Filtres */
+        .stats-badge span { display: inline-flex; align-items: center; gap: 6px; }
         .filter-bar {
             background: white;
             border-radius: 28px;
@@ -94,13 +60,7 @@
             gap: 1rem;
             border: 1px solid #e2edf2;
         }
-
-        .filter-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
+        .filter-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
         .filter-btn {
             background: #f0f4f8;
             border: none;
@@ -112,57 +72,19 @@
             transition: 0.2s;
             color: #4b6a85;
         }
-
-        .filter-btn.active {
-            background: #1e6f5c;
-            color: white;
-        }
-
-        .filter-btn i {
-            margin-right: 6px;
-        }
-
-        .fav-count-badge {
-            background: #ffeaa7;
-            color: #d4a017;
-            padding: 0.3rem 0.9rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Formulaire d'ajout */
+        .filter-btn.active { background: #1e6f5c; color: white; }
+        .filter-btn i { margin-right: 6px; }
+        .fav-count-badge { background: #ffeaa7; color: #d4a017; padding: 0.3rem 0.9rem; border-radius: 30px; font-size: 0.8rem; font-weight: 600; }
         .add-link-card {
             background: white;
             border-radius: 28px;
             padding: 1rem 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
             border: 1px solid #e2edf2;
         }
-
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: flex-end;
-        }
-
-        .input-group {
-            flex: 2;
-            min-width: 160px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #5b7e9c;
-            margin-bottom: 5px;
-        }
-
+        .form-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; }
+        .input-group { flex: 2; min-width: 160px; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #5b7e9c; margin-bottom: 5px; }
         .input-group input, .input-group select {
             width: 100%;
             padding: 0.8rem 1rem;
@@ -172,7 +94,6 @@
             font-size: 0.9rem;
             background: #fefefe;
         }
-
         .btn-add {
             background: #1e6f5c;
             border: none;
@@ -186,17 +107,8 @@
             align-items: center;
             gap: 10px;
         }
-
-        .btn-add:hover {
-            background: #0f5a4a;
-            transform: translateY(-2px);
-        }
-
-        /* Sections par matière */
-        .subject-section {
-            margin-bottom: 2.5rem;
-        }
-
+        .btn-add:hover { background: #0f5a4a; transform: translateY(-2px); }
+        .subject-section { margin-bottom: 2.5rem; }
         .subject-header {
             display: flex;
             align-items: baseline;
@@ -206,247 +118,62 @@
             border-left: 5px solid;
             padding-left: 1rem;
         }
-
-        .subject-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1e3a5f;
-        }
-
-        .subject-count {
-            background: #e2edf2;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #2c5a7a;
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-            gap: 1.2rem;
-        }
-
-        /* Carte */
+        .subject-header h2 { font-size: 1.5rem; font-weight: 600; color: #1e3a5f; }
+        .subject-count { background: #e2edf2; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.75rem; font-weight: 600; color: #2c5a7a; }
+        .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 1.2rem; }
         .resource-card {
             background: white;
             border-radius: 24px;
             padding: 1rem 1.2rem;
             transition: all 0.25s ease;
             border: 1px solid #e2edf2;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
-        .resource-card.favorite {
-            border-left: 4px solid #f5b042;
-            background: #fffef7;
-        }
-
-        .resource-card.hidden {
-            opacity: 0.5;
-            background: #f5f7f9;
-            filter: grayscale(0.1);
-        }
-
-        .resource-card.hidden .card-info,
-        .resource-card.hidden .card-actions {
-            opacity: 0.6;
-        }
-
-        .card-main {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .card-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            flex: 1;
-            cursor: pointer;
-        }
-
+        .resource-card.favorite { border-left: 4px solid #f5b042; background: #fffef7; }
+        .resource-card.hidden { opacity: 0.5; background: #f5f7f9; filter: grayscale(0.1); }
+        .card-main { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .card-info { display: flex; align-items: flex-start; gap: 12px; flex: 1; cursor: pointer; }
         .card-icon {
-            width: 44px;
-            height: 44px;
-            background: #eef3fa;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: #1e6f5c;
-            flex-shrink: 0;
+            width: 44px; height: 44px; background: #eef3fa; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #1e6f5c; flex-shrink: 0;
         }
-
-        .card-text {
-            flex: 1;
-        }
-
-        .card-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            line-height: 1.35;
-            color: #143750;
-            word-wrap: break-word;
-            margin-bottom: 4px;
-        }
-
-        .card-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 6px;
-            font-size: 0.68rem;
-            color: #8aa9c2;
-        }
-
-        .card-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .card-url {
-            font-size: 0.65rem;
-            color: #7e9ab0;
-            font-family: monospace;
-            word-break: break-all;
-            margin-top: 4px;
-        }
-
-        /* Zone de notes */
-        .note-area {
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px dashed #e2edf2;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .note-icon {
-            color: #8aa9c2;
-            font-size: 0.8rem;
-            margin-top: 2px;
-        }
-
+        .card-text { flex: 1; }
+        .card-title { font-weight: 700; font-size: 0.95rem; line-height: 1.35; color: #143750; word-wrap: break-word; margin-bottom: 4px; }
+        .card-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; font-size: 0.68rem; color: #8aa9c2; }
+        .card-meta span { display: inline-flex; align-items: center; gap: 4px; }
+        .card-url { font-size: 0.65rem; color: #7e9ab0; font-family: monospace; word-break: break-all; margin-top: 4px; }
+        .note-area { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #e2edf2; display: flex; align-items: flex-start; gap: 8px; }
+        .note-icon { color: #8aa9c2; font-size: 0.8rem; margin-top: 2px; }
         .note-text {
-            flex: 1;
-            font-size: 0.75rem;
-            color: #5b7e9c;
-            background: #f8fafc;
-            padding: 6px 10px;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: 0.2s;
-            word-break: break-word;
-            line-height: 1.4;
+            flex: 1; font-size: 0.75rem; color: #5b7e9c; background: #f8fafc;
+            padding: 6px 10px; border-radius: 16px; cursor: pointer; word-break: break-word; line-height: 1.4;
         }
-
-        .note-text:hover {
-            background: #eef3fa;
-        }
-
-        .note-text.empty {
-            color: #b3c7d8;
-            font-style: italic;
-        }
-
-        .note-input {
-            flex: 1;
-            font-size: 0.75rem;
-            padding: 6px 10px;
-            border-radius: 16px;
-            border: 1px solid #cde2ec;
-            font-family: 'Inter', sans-serif;
-            background: white;
-            resize: vertical;
-        }
-
-        .note-save-btn {
-            background: #1e6f5c;
-            border: none;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-
+        .note-text:hover { background: #eef3fa; }
+        .note-text.empty { color: #b3c7d8; font-style: italic; }
+        .note-input { flex: 1; font-size: 0.75rem; padding: 6px 10px; border-radius: 16px; border: 1px solid #cde2ec; font-family: 'Inter', sans-serif; background: white; resize: vertical; }
+        .note-save-btn { background: #1e6f5c; border: none; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; }
+        .card-actions { display: flex; gap: 6px; flex-shrink: 0; }
         .action-btn {
-            background: none;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            color: #92adc2;
-            transition: 0.2s;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            background: none; border: none; font-size: 1rem; cursor: pointer; color: #92adc2;
+            width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
         }
-
-        .action-btn.fav-btn.active-fav {
-            color: #f5b042;
-        }
-        .action-btn.hide-btn.active-hide {
-            color: #7f8c8d;
-            background: #ecf0f1;
-        }
-        .action-btn:hover {
-            background: #eef2f5;
-        }
-        .action-btn.delete-btn:hover {
-            background: #fee2e2;
-            color: #d9534f;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            background: #f9fbfd;
-            border-radius: 32px;
-            color: #8aacbf;
-            grid-column: 1 / -1;
-        }
-
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #7f9caf;
-            border-top: 1px solid #d4e2ec;
-            padding-top: 1.8rem;
-        }
-
-        @media (max-width: 640px) {
-            body { padding: 1rem; }
-            .links-grid { grid-template-columns: 1fr; }
-        }
+        .action-btn.fav-btn.active-fav { color: #f5b042; }
+        .action-btn.hide-btn.active-hide { color: #7f8c8d; background: #ecf0f1; }
+        .action-btn:hover { background: #eef2f5; }
+        .action-btn.delete-btn:hover { background: #fee2e2; color: #d9534f; }
+        .empty-state { text-align: center; padding: 2rem; background: #f9fbfd; border-radius: 32px; color: #8aacbf; grid-column: 1 / -1; }
+        footer { margin-top: 3rem; text-align: center; font-size: 0.8rem; color: #7f9caf; border-top: 1px solid #d4e2ec; padding-top: 1.8rem; }
+        @media (max-width: 640px) { body { padding: 1rem; } .links-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
 <div class="dashboard-container">
     <div class="header">
         <div class="title-section">
-            <h1><i class="fas fa-eye-slash"></i> Hub Économie & Finances</h1>
-            <p>Masquez les ressources • Ajoutez des notes personnelles • Favoris</p>
+            <h1><i class="fas fa-chart-line"></i> Hub Économie & Finances</h1>
+            <p>Problèmes économiques et sociaux • Croissance • Chômage • Pauvreté • Capitalisme</p>
         </div>
         <div class="stats-badge">
             <span><i class="fas fa-link"></i> <span id="totalResourcesCount">0</span> total</span>
@@ -454,8 +181,6 @@
             <span><i class="fas fa-eye-slash"></i> <span id="hiddenCount">0</span> masqués</span>
         </div>
     </div>
-
-    <!-- Filtres -->
     <div class="filter-bar">
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> Toutes</button>
@@ -463,15 +188,11 @@
             <button class="filter-btn" data-filter="visible"><i class="fas fa-eye"></i> Visibles</button>
             <button class="filter-btn" data-filter="hidden"><i class="fas fa-eye-slash"></i> Masquées</button>
         </div>
-        <div class="fav-count-badge">
-            <i class="fas fa-pen"></i> Cliquez sur une note pour l'éditer
-        </div>
+        <div class="fav-count-badge"><i class="fas fa-save"></i> Sauvegarde automatique</div>
     </div>
-
-    <!-- Formulaire d'ajout -->
     <div class="add-link-card">
         <div class="form-row">
-            <div class="input-group"><label>Titre</label><input type="text" id="newLinkTitle" placeholder="ex: Cours macroéconomie"></div>
+            <div class="input-group"><label>Titre</label><input type="text" id="newLinkTitle" placeholder="ex: Cours économie sociale"></div>
             <div class="input-group"><label>URL</label><input type="url" id="newLinkUrl" placeholder="https://..."></div>
             <div class="input-group"><label>Matière</label>
                 <select id="newLinkSubject">
@@ -481,18 +202,16 @@
                     <option value="Sociologie Économique">👥 Sociologie Économique</option>
                     <option value="Statistiques & Échantillonnage">📈 Statistiques & Échantillonnage</option>
                     <option value="Français / Méthodologie">📖 Français / Méthodologie</option>
+                    <option value="Problèmes économiques et sociaux">📉 Problèmes économiques et sociaux</option>
                     <option value="Autre">📁 Autre</option>
                 </select>
             </div>
-            <button class="btn-add" id="addLinkBtn"><i class="fas fa-plus-circle"></i> Ajouter</button>
+            <button class="btn-add" id="addLinkBtn"><i class="fas fa-plus-circle"></i> Ajouter (sauvegardé)</button>
         </div>
     </div>
-
     <div id="subjectsContainer"></div>
-    <footer><i class="fas fa-eye-slash"></i> Œil = masquer/afficher • <i class="fas fa-star"></i> Favori • <i class="fas fa-pen"></i> Note personnelle</footer>
+    <footer><i class="fas fa-database"></i> Les liens "Problèmes économiques et sociaux" et "PES" sont rangés dans leur matière dédiée.</footer>
 </div>
-
-<!-- Modal d'édition des liens -->
 <div id="editModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(3px); align-items:center; justify-content:center; z-index:1000;">
     <div style="background:white; max-width:500px; width:90%; border-radius:36px; padding:1.8rem;">
         <h3><i class="fas fa-edit"></i> Modifier le lien</h3>
@@ -505,6 +224,7 @@
             <option value="Sociologie Économique">👥 Sociologie Économique</option>
             <option value="Statistiques & Échantillonnage">📈 Statistiques & Échantillonnage</option>
             <option value="Français / Méthodologie">📖 Français / Méthodologie</option>
+            <option value="Problèmes économiques et sociaux">📉 Problèmes économiques et sociaux</option>
             <option value="Autre">📁 Autre</option>
         </select>
         <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:1rem;">
@@ -513,31 +233,39 @@
         </div>
     </div>
 </div>
-
 <script>
-    // ======================== STRUCTURE ========================
+    // === PERSISTANCE TOTALE ===
     let linksArray = [];
     let currentFilter = "all";
-    const STORAGE_KEY = "eco_dashboard_notes_hide_v5";
-    
-    function generateId() { return Date.now() + "-" + Math.random().toString(36).substr(2, 8); }
-    function generateCreatedDate() { return new Date().toISOString().split('T')[0]; }
-    
-    function detectSubject(title) {
+    const STORAGE_KEY = "eco_dashboard_persistent_v7";
+
+    function generateId() { return Date.now() + "-" + Math.random().toString(36).substr(2, 10); }
+    function getToday() { return new Date().toISOString().split('T')[0]; }
+
+    // Détection automatique de la matière avec priorité pour "Problèmes économiques et sociaux"
+    function detectSubject(title, url) {
         const t = title.toLowerCase();
+        const u = url.toLowerCase();
+        // Détection spécifique pour les nouveaux liens
+        if (u.includes("probleme-eco-et-sociaux") || u.includes("probleme-eco-et-sociaux-classe") || 
+            t.includes("problème économique") || t.includes("problème social") ||
+            t.includes("capitalisme") || t.includes("croissance") || t.includes("pauvreté") || t.includes("chômage")) {
+            return "Problèmes économiques et sociaux";
+        }
+        if (u.includes("probecosoc") || t.includes("pes") || (t.includes("économie") && t.includes("social"))) {
+            return "Problèmes économiques et sociaux";
+        }
         if (t.includes("finance") || t.includes("publique")) return "Finances Publiques";
         if (t.includes("monétaire") || t.includes("monetaire")) return "Économie Monétaire";
         if (t.includes("compta") || t.includes("analytique")) return "Comptabilité Analytique";
-        if (t.includes("sociologie") || t.includes("socio") || t.includes("classe")) return "Sociologie Économique";
+        if (t.includes("sociologie") || t.includes("socio")) return "Sociologie Économique";
         if (t.includes("échantillonnage") || t.includes("estimations") || t.includes("corrige")) return "Statistiques & Échantillonnage";
         if (t.includes("français") || t.includes("francais")) return "Français / Méthodologie";
-        if (t.includes("pes") || t.includes("problème")) return "Sociologie Économique";
         return "Autre";
     }
-    
-    // Liste initiale complète (20 anciens + 4 nouveaux)
-    const initialTitles = [
-        // Anciens liens
+
+    // Liste initiale complète (24 liens avec les deux nouveaux bien catégorisés)
+    const initialRaw = [
         { title: "Finances Publiques - 250 QCM (effets visuels)", url: "https://eco2026.github.io/Finances-Publiques-250-QCM-Effets-visuels/" },
         { title: "L'échantillonnage et estimations", url: "https://eco2026.github.io/L-chantillonnage-et-estimations/" },
         { title: "Sociologie Économique", url: "https://eco2026.github.io/-Sociologie-conomique/" },
@@ -558,23 +286,21 @@
         { title: "Économie monétaire v2", url: "https://eco2026.github.io/eco-mon-taire-v2/" },
         { title: "TD PROF MAJIDI - Économie Monétaire", url: "https://eco2026.github.io/TD-PROF-MAJIDI-ECO-MONETAIRE/" },
         { title: "L'échantillonnage et estimations (rappel)", url: "https://eco2026.github.io/L-chantillonnage-et-estimations/" },
-        // 4 NOUVEAUX LIENS AJOUTÉS
-        { title: "Réponses Détaillées aux Questions du Cours PES Semestre 4", url: "https://eco2026.github.io/R-ponses-D-taill-es-aux-Questions-du-Cours-PES-Semestre-4/" },
-        { title: "Sociologie - Classe sociale", url: "https://eco2026.github.io/sociologie-classe/" },
-        { title: "Corrigé échantillonnage et estimation", url: "https://eco2026.github.io/corrige-echantionnalge-te-estimation/" },
-        { title: "Problèmes économiques et sociaux de classe", url: "https://eco2026.github.io/probleme-eco-et-sociaux-classe/" }
+        // NOUVEAUX LIENS avec matière "Problèmes économiques et sociaux"
+        { title: "Problèmes économiques et sociaux - Capitalisme, Croissance, Pauvreté, Chômage", url: "https://eco2026.github.io/probleme-eco-et-sociaux-classe/" },
+        { title: "ProbEcoSoc PES - Économie et société", url: "https://eco2026.github.io/ProbEcoSoc-PES/" }
     ];
-    
+
     function buildInitialLinks() {
         const map = new Map();
-        for (const item of initialTitles) {
+        for (const item of initialRaw) {
             if (!map.has(item.url)) {
                 map.set(item.url, {
                     id: generateId(),
                     title: item.title,
                     url: item.url,
-                    subject: detectSubject(item.title),
-                    createdAt: generateCreatedDate(),
+                    subject: detectSubject(item.title, item.url),
+                    createdAt: getToday(),
                     isFavorite: false,
                     isHidden: false,
                     note: ""
@@ -583,40 +309,50 @@
         }
         return Array.from(map.values());
     }
-    
+
     function loadFromLocalStorage() {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
             try {
                 const parsed = JSON.parse(stored);
-                if (Array.isArray(parsed) && parsed.length > 0) {
+                if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].id) {
                     linksArray = parsed;
+                    console.log("Chargé depuis localStorage :", linksArray.length);
                     return;
                 }
             } catch(e) {}
         }
         linksArray = buildInitialLinks();
         saveToLocalStorage();
+        console.log("Initialisation avec données par défaut");
     }
-    
+
     function saveToLocalStorage() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(linksArray));
+        updateStatsUI();
     }
-    
+
+    function updateStatsUI() {
+        document.getElementById("totalResourcesCount").innerText = linksArray.length;
+        document.getElementById("favCount").innerText = linksArray.filter(l => l.isFavorite).length;
+        document.getElementById("hiddenCount").innerText = linksArray.filter(l => l.isHidden).length;
+    }
+
     function addNewLink() {
-        let title = newTitleInput.value.trim();
-        let url = newUrlInput.value.trim();
-        const subject = newLinkSubject.value;
-        if (!title) { alert("Titre requis"); return; }
-        if (!url) { alert("URL requise"); return; }
+        let title = document.getElementById("newLinkTitle").value.trim();
+        let url = document.getElementById("newLinkUrl").value.trim();
+        const subject = document.getElementById("newLinkSubject").value;
+        if (!title) { alert("Veuillez saisir un titre"); return; }
+        if (!url) { alert("Veuillez saisir une URL"); return; }
         if (!url.startsWith("http")) url = "https://" + url;
-        if (linksArray.some(link => link.url === url)) { alert("URL déjà existante"); return; }
+        if (linksArray.some(link => link.url === url)) { alert("Cette URL existe déjà"); return; }
+        
         const newLink = {
             id: generateId(),
             title: title,
             url: url,
             subject: subject,
-            createdAt: generateCreatedDate(),
+            createdAt: getToday(),
             isFavorite: false,
             isHidden: false,
             note: ""
@@ -624,46 +360,44 @@
         linksArray.push(newLink);
         saveToLocalStorage();
         renderDashboard();
-        newTitleInput.value = "";
-        newUrlInput.value = "";
-        newTitleInput.focus();
+        document.getElementById("newLinkTitle").value = "";
+        document.getElementById("newLinkUrl").value = "";
     }
-    
-    function toggleFavorite(id) { updateProp(id, "isFavorite"); }
-    function toggleHidden(id) { updateProp(id, "isHidden"); }
-    function updateNote(id, newNote) { 
-        const link = linksArray.find(l => l.id === id);
-        if (link) { link.note = newNote; saveToLocalStorage(); renderDashboard(); }
-    }
-    function updateProp(id, prop) {
+
+    function toggleFavorite(id) { toggleProp(id, "isFavorite"); }
+    function toggleHidden(id) { toggleProp(id, "isHidden"); }
+    function toggleProp(id, prop) {
         const link = linksArray.find(l => l.id === id);
         if (link) { link[prop] = !link[prop]; saveToLocalStorage(); renderDashboard(); }
     }
+    function updateNote(id, newNote) {
+        const link = linksArray.find(l => l.id === id);
+        if (link) { link.note = newNote; saveToLocalStorage(); renderDashboard(); }
+    }
     function deleteLink(id) {
-        if (confirm("Supprimer cette ressource ?")) {
+        if (confirm("Supprimer définitivement cette ressource ?")) {
             linksArray = linksArray.filter(l => l.id !== id);
             saveToLocalStorage();
             renderDashboard();
         }
     }
-    
-    // Gestion édition classique
+
     let currentEditId = null;
     function openEditModal(id) {
         const link = linksArray.find(l => l.id === id);
         if (!link) return;
         currentEditId = id;
-        editTitleInput.value = link.title;
-        editUrlInput.value = link.url;
-        editSubjectSelect.value = link.subject;
-        editModal.style.display = "flex";
+        document.getElementById("editTitle").value = link.title;
+        document.getElementById("editUrl").value = link.url;
+        document.getElementById("editSubject").value = link.subject;
+        document.getElementById("editModal").style.display = "flex";
     }
-    function closeEditModal() { editModal.style.display = "none"; currentEditId = null; }
+    function closeEditModal() { document.getElementById("editModal").style.display = "none"; currentEditId = null; }
     function saveEdit() {
         if (!currentEditId) return;
-        const newTitle = editTitleInput.value.trim();
-        let newUrl = editUrlInput.value.trim();
-        const newSubject = editSubjectSelect.value;
+        const newTitle = document.getElementById("editTitle").value.trim();
+        let newUrl = document.getElementById("editUrl").value.trim();
+        const newSubject = document.getElementById("editSubject").value;
         if (!newTitle) { alert("Titre requis"); return; }
         if (!newUrl) { alert("URL requise"); return; }
         if (!newUrl.startsWith("http")) newUrl = "https://" + newUrl;
@@ -679,8 +413,7 @@
         }
         closeEditModal();
     }
-    
-    // Composant Note éditable
+
     function createNoteEditor(linkId, currentNote) {
         const container = document.createElement("div");
         container.className = "note-area";
@@ -690,7 +423,6 @@
         const noteDiv = document.createElement("div");
         noteDiv.className = "note-text" + (currentNote ? "" : " empty");
         noteDiv.innerText = currentNote && currentNote.trim() !== "" ? currentNote : "Ajouter une observation...";
-        
         let editing = false;
         noteDiv.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -717,7 +449,7 @@
         container.appendChild(noteDiv);
         return container;
     }
-    
+
     function renderDashboard() {
         const container = document.getElementById("subjectsContainer");
         if (!container) return;
@@ -728,12 +460,7 @@
         else if (currentFilter === "visible") filtered = filtered.filter(l => !l.isHidden);
         else if (currentFilter === "hidden") filtered = filtered.filter(l => l.isHidden);
         
-        const total = linksArray.length;
-        const favs = linksArray.filter(l => l.isFavorite).length;
-        const hidden = linksArray.filter(l => l.isHidden).length;
-        document.getElementById("totalResourcesCount").innerText = total;
-        document.getElementById("favCount").innerText = favs;
-        document.getElementById("hiddenCount").innerText = hidden;
+        updateStatsUI();
         
         if (filtered.length === 0) {
             container.innerHTML = `<div class="empty-state"><i class="fas fa-filter"></i><p>Aucune ressource avec ce filtre.</p></div>`;
@@ -746,7 +473,7 @@
             grouped.get(link.subject).push(link);
         }
         
-        const order = ["Finances Publiques", "Économie Monétaire", "Comptabilité Analytique", "Sociologie Économique", "Statistiques & Échantillonnage", "Français / Méthodologie", "Autre"];
+        const order = ["Problèmes économiques et sociaux", "Finances Publiques", "Économie Monétaire", "Comptabilité Analytique", "Sociologie Économique", "Statistiques & Échantillonnage", "Français / Méthodologie", "Autre"];
         const sorted = Array.from(grouped.keys()).sort((a,b) => {
             let ia = order.indexOf(a); if(ia===-1) ia=999;
             let ib = order.indexOf(b); if(ib===-1) ib=999;
@@ -758,7 +485,8 @@
             const section = document.createElement("div");
             section.className = "subject-section";
             let borderColor = "#2c9e7c";
-            if(subject === "Finances Publiques") borderColor="#d4af37";
+            if(subject === "Problèmes économiques et sociaux") borderColor="#e67e22";
+            else if(subject === "Finances Publiques") borderColor="#d4af37";
             else if(subject === "Économie Monétaire") borderColor="#2c7da0";
             else if(subject === "Comptabilité Analytique") borderColor="#5e9b8c";
             else if(subject === "Sociologie Économique") borderColor="#c44569";
@@ -779,7 +507,16 @@
     }
     
     function getSubjectIcon(subject) {
-        const icons = { "Finances Publiques":"💰","Économie Monétaire":"🏦","Comptabilité Analytique":"📊","Sociologie Économique":"👥","Statistiques & Échantillonnage":"📈","Français / Méthodologie":"📖","Autre":"📁" };
+        const icons = { 
+            "Problèmes économiques et sociaux":"📉",
+            "Finances Publiques":"💰",
+            "Économie Monétaire":"🏦",
+            "Comptabilité Analytique":"📊",
+            "Sociologie Économique":"👥",
+            "Statistiques & Échantillonnage":"📈",
+            "Français / Méthodologie":"📖",
+            "Autre":"📁" 
+        };
         return icons[subject] || "📘";
     }
     
@@ -791,6 +528,7 @@
         if(t.includes("monétaire")) return "fa-coins";
         if(t.includes("sociologie")) return "fa-users";
         if(t.includes("échantillonnage")) return "fa-chart-line";
+        if(t.includes("capitalisme")||t.includes("croissance")||t.includes("pauvreté")||t.includes("chômage")) return "fa-chart-line";
         return "fa-book-open";
     }
     
@@ -800,12 +538,8 @@
     function createCard(link) {
         const card = document.createElement("div");
         card.className = `resource-card ${link.isFavorite ? 'favorite' : ''} ${link.isHidden ? 'hidden' : ''}`;
-        
-        const mainDiv = document.createElement("div");
-        mainDiv.className = "card-main";
-        
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "card-info";
+        const mainDiv = document.createElement("div"); mainDiv.className = "card-main";
+        const infoDiv = document.createElement("div"); infoDiv.className = "card-info";
         infoDiv.addEventListener("click", () => { if(!link.isHidden) window.open(link.url, "_blank"); });
         const iconClass = getIconClass(link.title);
         infoDiv.innerHTML = `
@@ -819,65 +553,30 @@
                 <div class="card-url" title="${escapeHtml(link.url)}">${truncateUrl(link.url)}</div>
             </div>
         `;
-        
-        const actionsDiv = document.createElement("div");
-        actionsDiv.className = "card-actions";
-        
-        const favBtn = document.createElement("button");
-        favBtn.className = `action-btn fav-btn ${link.isFavorite ? 'active-fav' : ''}`;
-        favBtn.innerHTML = '<i class="fas fa-star"></i>';
+        const actionsDiv = document.createElement("div"); actionsDiv.className = "card-actions";
+        const favBtn = document.createElement("button"); favBtn.className = `action-btn fav-btn ${link.isFavorite ? 'active-fav' : ''}`; favBtn.innerHTML = '<i class="fas fa-star"></i>';
         favBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleFavorite(link.id); });
-        
-        const hideBtn = document.createElement("button");
-        hideBtn.className = `action-btn hide-btn ${link.isHidden ? 'active-hide' : ''}`;
-        hideBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        const hideBtn = document.createElement("button"); hideBtn.className = `action-btn hide-btn ${link.isHidden ? 'active-hide' : ''}`; hideBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
         hideBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleHidden(link.id); });
-        
-        const editBtn = document.createElement("button");
-        editBtn.className = "action-btn edit-btn";
-        editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+        const editBtn = document.createElement("button"); editBtn.className = "action-btn edit-btn"; editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
         editBtn.addEventListener("click", (e) => { e.stopPropagation(); openEditModal(link.id); });
-        
-        const delBtn = document.createElement("button");
-        delBtn.className = "action-btn delete-btn";
-        delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        const delBtn = document.createElement("button"); delBtn.className = "action-btn delete-btn"; delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
         delBtn.addEventListener("click", (e) => { e.stopPropagation(); deleteLink(link.id); });
-        
-        actionsDiv.appendChild(favBtn);
-        actionsDiv.appendChild(hideBtn);
-        actionsDiv.appendChild(editBtn);
-        actionsDiv.appendChild(delBtn);
-        mainDiv.appendChild(infoDiv);
-        mainDiv.appendChild(actionsDiv);
+        actionsDiv.append(favBtn, hideBtn, editBtn, delBtn);
+        mainDiv.append(infoDiv, actionsDiv);
         card.appendChild(mainDiv);
-        
-        // Ajout de la zone de notes
-        const noteEditor = createNoteEditor(link.id, link.note);
-        card.appendChild(noteEditor);
-        
+        card.appendChild(createNoteEditor(link.id, link.note));
         return card;
     }
-    
-    // Initialisation et event listeners
-    const newTitleInput = document.getElementById("newLinkTitle");
-    const newUrlInput = document.getElementById("newLinkUrl");
-    const newLinkSubject = document.getElementById("newLinkSubject");
-    const addBtn = document.getElementById("addLinkBtn");
-    const editModal = document.getElementById("editModal");
-    const editTitleInput = document.getElementById("editTitle");
-    const editUrlInput = document.getElementById("editUrl");
-    const editSubjectSelect = document.getElementById("editSubject");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const saveEditBtn = document.getElementById("saveEditBtn");
-    
+
     function init() {
         loadFromLocalStorage();
         renderDashboard();
-        
-        addBtn.addEventListener("click", addNewLink);
-        [newTitleInput, newUrlInput].forEach(inp => inp.addEventListener("keypress", e => { if(e.key==="Enter") addNewLink(); }));
-        
-        // Filtres
+        document.getElementById("addLinkBtn").addEventListener("click", addNewLink);
+        const titleInput = document.getElementById("newLinkTitle");
+        const urlInput = document.getElementById("newLinkUrl");
+        titleInput.addEventListener("keypress", e => { if(e.key==="Enter") addNewLink(); });
+        urlInput.addEventListener("keypress", e => { if(e.key==="Enter") addNewLink(); });
         document.querySelectorAll(".filter-btn").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -886,13 +585,11 @@
                 renderDashboard();
             });
         });
-        
-        closeModalBtn.addEventListener("click", closeEditModal);
-        saveEditBtn.addEventListener("click", saveEdit);
-        window.addEventListener("click", (e) => { if(e.target === editModal) closeEditModal(); });
-        window.addEventListener("keydown", (e) => { if(e.key==="Escape" && editModal.style.display==="flex") closeEditModal(); });
+        document.getElementById("closeModalBtn").addEventListener("click", closeEditModal);
+        document.getElementById("saveEditBtn").addEventListener("click", saveEdit);
+        window.addEventListener("click", (e) => { if(e.target === document.getElementById("editModal")) closeEditModal(); });
+        window.addEventListener("keydown", (e) => { if(e.key==="Escape" && document.getElementById("editModal").style.display==="flex") closeEditModal(); });
     }
-    
     init();
 </script>
 </body>
