@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Tableau de Bord Académique | Économie & Finances</title>
+    <title>Tableau de Bord | Économie & Finances - Notes & Masquage</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -44,7 +44,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
             display: inline-flex;
             align-items: center;
             gap: 12px;
@@ -52,8 +51,6 @@
 
         .title-section h1 i {
             background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
             color: #1e6f5c;
             font-size: 2rem;
         }
@@ -74,11 +71,64 @@
             font-size: 0.9rem;
             color: #1e4668;
             border: 1px solid #cbdde9;
+            display: flex;
+            gap: 15px;
         }
 
-        .stats-badge i {
-            margin-right: 8px;
-            color: #2c9e7c;
+        .stats-badge span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Filtres */
+        .filter-bar {
+            background: white;
+            border-radius: 28px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid #e2edf2;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f0f4f8;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #4b6a85;
+        }
+
+        .filter-btn.active {
+            background: #1e6f5c;
+            color: white;
+        }
+
+        .filter-btn i {
+            margin-right: 6px;
+        }
+
+        .fav-count-badge {
+            background: #ffeaa7;
+            color: #d4a017;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         /* Formulaire d'ajout */
@@ -86,8 +136,8 @@
             background: white;
             border-radius: 28px;
             padding: 1rem 1.5rem;
-            margin-bottom: 2.2rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
             border: 1px solid #e2edf2;
         }
 
@@ -100,7 +150,7 @@
 
         .input-group {
             flex: 2;
-            min-width: 180px;
+            min-width: 160px;
         }
 
         .input-group label {
@@ -121,18 +171,6 @@
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             background: #fefefe;
-            transition: 0.2s;
-        }
-
-        .input-group select {
-            cursor: pointer;
-            background: white;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: #2c9e7c;
-            box-shadow: 0 0 0 3px rgba(44,158,124,0.1);
         }
 
         .btn-add {
@@ -142,13 +180,11 @@
             border-radius: 40px;
             font-weight: 600;
             color: white;
-            font-size: 0.9rem;
             cursor: pointer;
             transition: 0.2s;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
 
         .btn-add:hover {
@@ -186,14 +222,13 @@
             color: #2c5a7a;
         }
 
-        /* Grille des cartes */
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
             gap: 1.2rem;
         }
 
-        /* Carte individuelle */
+        /* Carte */
         .resource-card {
             background: white;
             border-radius: 24px;
@@ -202,16 +237,31 @@
             border: 1px solid #e2edf2;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
             display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .resource-card.favorite {
+            border-left: 4px solid #f5b042;
+            background: #fffef7;
+        }
+
+        .resource-card.hidden {
+            opacity: 0.5;
+            background: #f5f7f9;
+            filter: grayscale(0.1);
+        }
+
+        .resource-card.hidden .card-info,
+        .resource-card.hidden .card-actions {
+            opacity: 0.6;
+        }
+
+        .card-main {
+            display: flex;
             align-items: flex-start;
             justify-content: space-between;
             gap: 12px;
-            cursor: pointer;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px -12px rgba(0, 0, 0, 0.1);
-            border-color: #cde2ec;
         }
 
         .card-info {
@@ -219,7 +269,7 @@
             align-items: flex-start;
             gap: 12px;
             flex: 1;
-            overflow: visible;
+            cursor: pointer;
         }
 
         .card-icon {
@@ -233,7 +283,6 @@
             font-size: 1.3rem;
             color: #1e6f5c;
             flex-shrink: 0;
-            margin-top: 2px;
         }
 
         .card-text {
@@ -246,7 +295,6 @@
             line-height: 1.35;
             color: #143750;
             word-wrap: break-word;
-            white-space: normal;
             margin-bottom: 4px;
         }
 
@@ -270,8 +318,66 @@
             color: #7e9ab0;
             font-family: monospace;
             word-break: break-all;
-            white-space: normal;
             margin-top: 4px;
+        }
+
+        /* Zone de notes */
+        .note-area {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed #e2edf2;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .note-icon {
+            color: #8aa9c2;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .note-text {
+            flex: 1;
+            font-size: 0.75rem;
+            color: #5b7e9c;
+            background: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .note-text:hover {
+            background: #eef3fa;
+        }
+
+        .note-text.empty {
+            color: #b3c7d8;
+            font-style: italic;
+        }
+
+        .note-input {
+            flex: 1;
+            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 16px;
+            border: 1px solid #cde2ec;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            resize: vertical;
+        }
+
+        .note-save-btn {
+            background: #1e6f5c;
+            border: none;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            cursor: pointer;
         }
 
         .card-actions {
@@ -295,78 +401,19 @@
             justify-content: center;
         }
 
+        .action-btn.fav-btn.active-fav {
+            color: #f5b042;
+        }
+        .action-btn.hide-btn.active-hide {
+            color: #7f8c8d;
+            background: #ecf0f1;
+        }
+        .action-btn:hover {
+            background: #eef2f5;
+        }
         .action-btn.delete-btn:hover {
             background: #fee2e2;
             color: #d9534f;
-        }
-
-        .action-btn.edit-btn:hover {
-            background: #e6f4ef;
-            color: #1e6f5c;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 36px;
-            padding: 1.8rem;
-            box-shadow: 0 30px 40px rgba(0,0,0,0.2);
-        }
-
-        .modal-content h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .modal-content input, .modal-content select {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 24px;
-            border: 1.5px solid #dce5ec;
-            margin: 10px 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .modal-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 1rem;
-        }
-
-        .modal-buttons button {
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
-        }
-
-        .save-modal {
-            background: #1e6f5c;
-            color: white;
-        }
-
-        .cancel-modal {
-            background: #eef2f5;
-            color: #2c3e50;
         }
 
         .empty-state {
@@ -388,15 +435,8 @@
         }
 
         @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-            .subject-header h2 {
-                font-size: 1.3rem;
-            }
+            body { padding: 1rem; }
+            .links-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -405,33 +445,38 @@
 <div class="dashboard-container">
     <div class="header">
         <div class="title-section">
-            <h1>
-                <i class="fas fa-chalkboard-user"></i> 
-                Hub Économie & Finances
-            </h1>
-            <p>Ressources classées par matière avec date de création automatique</p>
+            <h1><i class="fas fa-eye-slash"></i> Hub Économie & Finances</h1>
+            <p>Masquez les ressources • Ajoutez des notes personnelles • Favoris</p>
         </div>
         <div class="stats-badge">
-            <i class="fas fa-layer-group"></i> <span id="totalResourcesCount">0</span> ressources
+            <span><i class="fas fa-link"></i> <span id="totalResourcesCount">0</span> total</span>
+            <span><i class="fas fa-star" style="color:#f5b042;"></i> <span id="favCount">0</span> favoris</span>
+            <span><i class="fas fa-eye-slash"></i> <span id="hiddenCount">0</span> masqués</span>
         </div>
     </div>
 
-    <!-- Formulaire d'ajout avec sélection de matière -->
+    <!-- Filtres -->
+    <div class="filter-bar">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> Toutes</button>
+            <button class="filter-btn" data-filter="favorites"><i class="fas fa-star"></i> Favoris</button>
+            <button class="filter-btn" data-filter="visible"><i class="fas fa-eye"></i> Visibles</button>
+            <button class="filter-btn" data-filter="hidden"><i class="fas fa-eye-slash"></i> Masquées</button>
+        </div>
+        <div class="fav-count-badge">
+            <i class="fas fa-pen"></i> Cliquez sur une note pour l'éditer
+        </div>
+    </div>
+
+    <!-- Formulaire d'ajout -->
     <div class="add-link-card">
         <div class="form-row">
-            <div class="input-group">
-                <label><i class="fas fa-tag"></i> Titre du lien</label>
-                <input type="text" id="newLinkTitle" placeholder="ex: Cours complet macroéconomie" autocomplete="off">
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-globe"></i> URL complète</label>
-                <input type="url" id="newLinkUrl" placeholder="https://..." autocomplete="off">
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-book"></i> Matière</label>
+            <div class="input-group"><label>Titre</label><input type="text" id="newLinkTitle" placeholder="ex: Cours macroéconomie"></div>
+            <div class="input-group"><label>URL</label><input type="url" id="newLinkUrl" placeholder="https://..."></div>
+            <div class="input-group"><label>Matière</label>
                 <select id="newLinkSubject">
                     <option value="Finances Publiques">💰 Finances Publiques</option>
-                    <option value="Économie Monétaire">🏦 Économie Monétaire & Financière</option>
+                    <option value="Économie Monétaire">🏦 Économie Monétaire</option>
                     <option value="Comptabilité Analytique">📊 Comptabilité Analytique</option>
                     <option value="Sociologie Économique">👥 Sociologie Économique</option>
                     <option value="Statistiques & Échantillonnage">📈 Statistiques & Échantillonnage</option>
@@ -439,69 +484,60 @@
                     <option value="Autre">📁 Autre</option>
                 </select>
             </div>
-            <button class="btn-add" id="addLinkBtn">
-                <i class="fas fa-plus-circle"></i> Ajouter
-            </button>
+            <button class="btn-add" id="addLinkBtn"><i class="fas fa-plus-circle"></i> Ajouter</button>
         </div>
     </div>
 
-    <!-- Conteneur des sections par matière -->
     <div id="subjectsContainer"></div>
-
-    <footer>
-        <i class="fas fa-calendar-alt"></i> Les dates de création sont extraites automatiquement des pages (si disponibles) ou la date d'ajout • <i class="fas fa-pen"></i> Éditez ou supprimez avec les icônes
-    </footer>
+    <footer><i class="fas fa-eye-slash"></i> Œil = masquer/afficher • <i class="fas fa-star"></i> Favori • <i class="fas fa-pen"></i> Note personnelle</footer>
 </div>
 
-<!-- Modal d'édition -->
-<div id="editModal" class="modal">
-    <div class="modal-content">
+<!-- Modal d'édition des liens -->
+<div id="editModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(3px); align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:white; max-width:500px; width:90%; border-radius:36px; padding:1.8rem;">
         <h3><i class="fas fa-edit"></i> Modifier le lien</h3>
-        <input type="text" id="editTitle" placeholder="Titre">
-        <input type="url" id="editUrl" placeholder="URL">
-        <select id="editSubject">
+        <input type="text" id="editTitle" placeholder="Titre" style="width:100%; padding:0.8rem; border-radius:24px; border:1.5px solid #dce5ec; margin:10px 0;">
+        <input type="url" id="editUrl" placeholder="URL" style="width:100%; padding:0.8rem; border-radius:24px; border:1.5px solid #dce5ec; margin:10px 0;">
+        <select id="editSubject" style="width:100%; padding:0.8rem; border-radius:24px; border:1.5px solid #dce5ec; margin:10px 0;">
             <option value="Finances Publiques">💰 Finances Publiques</option>
-            <option value="Économie Monétaire">🏦 Économie Monétaire & Financière</option>
+            <option value="Économie Monétaire">🏦 Économie Monétaire</option>
             <option value="Comptabilité Analytique">📊 Comptabilité Analytique</option>
             <option value="Sociologie Économique">👥 Sociologie Économique</option>
             <option value="Statistiques & Échantillonnage">📈 Statistiques & Échantillonnage</option>
             <option value="Français / Méthodologie">📖 Français / Méthodologie</option>
             <option value="Autre">📁 Autre</option>
         </select>
-        <div class="modal-buttons">
-            <button class="cancel-modal" id="closeModalBtn">Annuler</button>
-            <button class="save-modal" id="saveEditBtn">Enregistrer</button>
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:1rem;">
+            <button id="closeModalBtn" style="padding:0.5rem 1.2rem; border-radius:30px; border:none; background:#eef2f5;">Annuler</button>
+            <button id="saveEditBtn" style="padding:0.5rem 1.2rem; border-radius:30px; border:none; background:#1e6f5c; color:white;">Enregistrer</button>
         </div>
     </div>
 </div>
 
 <script>
-    // -------- Données initiales avec matières et dates simulées/détectées --------
-    // Fonction pour extraire une date approximative depuis l'URL ou titre (simulation réaliste)
-    function generateCreatedDate(title, url) {
-        // Pour les démonstrations, on génère des dates aléatoires entre septembre 2024 et mai 2026
-        // mais dans un vrai contexte, on pourrait faire un fetch HEAD, ici on simule
-        const hash = (title + url).length % 30;
-        const baseDate = new Date(2024, 8, 1); // 1er septembre 2024
-        const daysOffset = (hash * 7) % 450;
-        const date = new Date(baseDate);
-        date.setDate(baseDate.getDate() + daysOffset);
-        return date.toISOString().split('T')[0]; // YYYY-MM-DD
-    }
-
-    // Définition des matières pour chaque lien initial (détection automatique basée sur titre)
+    // ======================== STRUCTURE ========================
+    let linksArray = [];
+    let currentFilter = "all";
+    const STORAGE_KEY = "eco_dashboard_notes_hide_v5";
+    
+    function generateId() { return Date.now() + "-" + Math.random().toString(36).substr(2, 8); }
+    function generateCreatedDate() { return new Date().toISOString().split('T')[0]; }
+    
     function detectSubject(title) {
         const t = title.toLowerCase();
-        if (t.includes("finance") || t.includes("publique") || t.includes("qcm finance")) return "Finances Publiques";
-        if (t.includes("monétaire") || t.includes("monetaire") || t.includes("eco monétaire")) return "Économie Monétaire";
+        if (t.includes("finance") || t.includes("publique")) return "Finances Publiques";
+        if (t.includes("monétaire") || t.includes("monetaire")) return "Économie Monétaire";
         if (t.includes("compta") || t.includes("analytique")) return "Comptabilité Analytique";
-        if (t.includes("sociologie") || t.includes("socio")) return "Sociologie Économique";
-        if (t.includes("échantillonnage") || t.includes("estimations")) return "Statistiques & Échantillonnage";
-        if (t.includes("français") || t.includes("francais") || t.includes("résumé s4")) return "Français / Méthodologie";
+        if (t.includes("sociologie") || t.includes("socio") || t.includes("classe")) return "Sociologie Économique";
+        if (t.includes("échantillonnage") || t.includes("estimations") || t.includes("corrige")) return "Statistiques & Échantillonnage";
+        if (t.includes("français") || t.includes("francais")) return "Français / Méthodologie";
+        if (t.includes("pes") || t.includes("problème")) return "Sociologie Économique";
         return "Autre";
     }
-
-    const initialLinksRaw = [
+    
+    // Liste initiale complète (20 anciens + 4 nouveaux)
+    const initialTitles = [
+        // Anciens liens
         { title: "Finances Publiques - 250 QCM (effets visuels)", url: "https://eco2026.github.io/Finances-Publiques-250-QCM-Effets-visuels/" },
         { title: "L'échantillonnage et estimations", url: "https://eco2026.github.io/L-chantillonnage-et-estimations/" },
         { title: "Sociologie Économique", url: "https://eco2026.github.io/-Sociologie-conomique/" },
@@ -521,36 +557,33 @@
         { title: "Finances Publiques - notion clés", url: "https://eco2026.github.io/-Finances-Publiques/" },
         { title: "Économie monétaire v2", url: "https://eco2026.github.io/eco-mon-taire-v2/" },
         { title: "TD PROF MAJIDI - Économie Monétaire", url: "https://eco2026.github.io/TD-PROF-MAJIDI-ECO-MONETAIRE/" },
-        { title: "L'échantillonnage et estimations (rappel)", url: "https://eco2026.github.io/L-chantillonnage-et-estimations/" }
+        { title: "L'échantillonnage et estimations (rappel)", url: "https://eco2026.github.io/L-chantillonnage-et-estimations/" },
+        // 4 NOUVEAUX LIENS AJOUTÉS
+        { title: "Réponses Détaillées aux Questions du Cours PES Semestre 4", url: "https://eco2026.github.io/R-ponses-D-taill-es-aux-Questions-du-Cours-PES-Semestre-4/" },
+        { title: "Sociologie - Classe sociale", url: "https://eco2026.github.io/sociologie-classe/" },
+        { title: "Corrigé échantillonnage et estimation", url: "https://eco2026.github.io/corrige-echantionnalge-te-estimation/" },
+        { title: "Problèmes économiques et sociaux de classe", url: "https://eco2026.github.io/probleme-eco-et-sociaux-classe/" }
     ];
-
-    // Construction des liens avec matière et date
-    let linksArray = [];
-
+    
     function buildInitialLinks() {
         const map = new Map();
-        for (const raw of initialLinksRaw) {
-            if (!map.has(raw.url)) {
-                const subject = detectSubject(raw.title);
-                const createdDate = generateCreatedDate(raw.title, raw.url);
-                map.set(raw.url, {
-                    title: raw.title,
-                    url: raw.url,
-                    subject: subject,
-                    createdAt: createdDate
+        for (const item of initialTitles) {
+            if (!map.has(item.url)) {
+                map.set(item.url, {
+                    id: generateId(),
+                    title: item.title,
+                    url: item.url,
+                    subject: detectSubject(item.title),
+                    createdAt: generateCreatedDate(),
+                    isFavorite: false,
+                    isHidden: false,
+                    note: ""
                 });
             }
         }
         return Array.from(map.values());
     }
-
-    const STORAGE_KEY = "eco_dashboard_links_v2";
-
-    // Sauvegarde
-    function saveToLocalStorage() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(linksArray));
-    }
-
+    
     function loadFromLocalStorage() {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
@@ -565,127 +598,222 @@
         linksArray = buildInitialLinks();
         saveToLocalStorage();
     }
-
-    // Ajouter un lien
+    
+    function saveToLocalStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(linksArray));
+    }
+    
     function addNewLink() {
         let title = newTitleInput.value.trim();
         let url = newUrlInput.value.trim();
         const subject = newLinkSubject.value;
-
-        if (!title) { alert("Veuillez saisir un titre."); return; }
-        if (!url) { alert("Veuillez saisir une URL."); return; }
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            url = "https://" + url;
-        }
-        if (linksArray.some(link => link.url === url)) {
-            alert("Cette URL existe déjà.");
-            return;
-        }
-        const today = new Date().toISOString().split('T')[0];
-        linksArray.push({
+        if (!title) { alert("Titre requis"); return; }
+        if (!url) { alert("URL requise"); return; }
+        if (!url.startsWith("http")) url = "https://" + url;
+        if (linksArray.some(link => link.url === url)) { alert("URL déjà existante"); return; }
+        const newLink = {
+            id: generateId(),
             title: title,
             url: url,
             subject: subject,
-            createdAt: today
-        });
+            createdAt: generateCreatedDate(),
+            isFavorite: false,
+            isHidden: false,
+            note: ""
+        };
+        linksArray.push(newLink);
         saveToLocalStorage();
         renderDashboard();
         newTitleInput.value = "";
         newUrlInput.value = "";
         newTitleInput.focus();
     }
-
-    // Rendu avec regroupement par matière
+    
+    function toggleFavorite(id) { updateProp(id, "isFavorite"); }
+    function toggleHidden(id) { updateProp(id, "isHidden"); }
+    function updateNote(id, newNote) { 
+        const link = linksArray.find(l => l.id === id);
+        if (link) { link.note = newNote; saveToLocalStorage(); renderDashboard(); }
+    }
+    function updateProp(id, prop) {
+        const link = linksArray.find(l => l.id === id);
+        if (link) { link[prop] = !link[prop]; saveToLocalStorage(); renderDashboard(); }
+    }
+    function deleteLink(id) {
+        if (confirm("Supprimer cette ressource ?")) {
+            linksArray = linksArray.filter(l => l.id !== id);
+            saveToLocalStorage();
+            renderDashboard();
+        }
+    }
+    
+    // Gestion édition classique
+    let currentEditId = null;
+    function openEditModal(id) {
+        const link = linksArray.find(l => l.id === id);
+        if (!link) return;
+        currentEditId = id;
+        editTitleInput.value = link.title;
+        editUrlInput.value = link.url;
+        editSubjectSelect.value = link.subject;
+        editModal.style.display = "flex";
+    }
+    function closeEditModal() { editModal.style.display = "none"; currentEditId = null; }
+    function saveEdit() {
+        if (!currentEditId) return;
+        const newTitle = editTitleInput.value.trim();
+        let newUrl = editUrlInput.value.trim();
+        const newSubject = editSubjectSelect.value;
+        if (!newTitle) { alert("Titre requis"); return; }
+        if (!newUrl) { alert("URL requise"); return; }
+        if (!newUrl.startsWith("http")) newUrl = "https://" + newUrl;
+        const index = linksArray.findIndex(l => l.id === currentEditId);
+        if (index !== -1) {
+            if (linksArray.some((l, idx) => idx !== index && l.url === newUrl)) {
+                alert("URL déjà utilisée");
+                return;
+            }
+            linksArray[index] = { ...linksArray[index], title: newTitle, url: newUrl, subject: newSubject };
+            saveToLocalStorage();
+            renderDashboard();
+        }
+        closeEditModal();
+    }
+    
+    // Composant Note éditable
+    function createNoteEditor(linkId, currentNote) {
+        const container = document.createElement("div");
+        container.className = "note-area";
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "note-icon";
+        iconSpan.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+        const noteDiv = document.createElement("div");
+        noteDiv.className = "note-text" + (currentNote ? "" : " empty");
+        noteDiv.innerText = currentNote && currentNote.trim() !== "" ? currentNote : "Ajouter une observation...";
+        
+        let editing = false;
+        noteDiv.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (editing) return;
+            editing = true;
+            const input = document.createElement("textarea");
+            input.className = "note-input";
+            input.value = currentNote || "";
+            input.rows = 2;
+            const saveBtn = document.createElement("button");
+            saveBtn.className = "note-save-btn";
+            saveBtn.innerText = "Enregistrer";
+            container.replaceChild(input, noteDiv);
+            container.appendChild(saveBtn);
+            const finish = () => {
+                const newVal = input.value.trim();
+                updateNote(linkId, newVal);
+                editing = false;
+            };
+            saveBtn.addEventListener("click", (e2) => { e2.stopPropagation(); finish(); });
+            input.addEventListener("keydown", (e2) => { if(e2.key === "Enter" && !e2.shiftKey) { e2.preventDefault(); finish(); } });
+        });
+        container.appendChild(iconSpan);
+        container.appendChild(noteDiv);
+        return container;
+    }
+    
     function renderDashboard() {
         const container = document.getElementById("subjectsContainer");
         if (!container) return;
         container.innerHTML = "";
         
-        // Regroupement
-        const grouped = new Map();
-        for (const link of linksArray) {
-            const subj = link.subject;
-            if (!grouped.has(subj)) grouped.set(subj, []);
-            grouped.get(subj).push(link);
-        }
+        let filtered = [...linksArray];
+        if (currentFilter === "favorites") filtered = filtered.filter(l => l.isFavorite);
+        else if (currentFilter === "visible") filtered = filtered.filter(l => !l.isHidden);
+        else if (currentFilter === "hidden") filtered = filtered.filter(l => l.isHidden);
         
         const total = linksArray.length;
+        const favs = linksArray.filter(l => l.isFavorite).length;
+        const hidden = linksArray.filter(l => l.isHidden).length;
         document.getElementById("totalResourcesCount").innerText = total;
+        document.getElementById("favCount").innerText = favs;
+        document.getElementById("hiddenCount").innerText = hidden;
         
-        if (total === 0) {
-            container.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open" style="font-size: 2.5rem;"></i><p>Aucune ressource. Ajoutez votre premier lien !</p></div>`;
+        if (filtered.length === 0) {
+            container.innerHTML = `<div class="empty-state"><i class="fas fa-filter"></i><p>Aucune ressource avec ce filtre.</p></div>`;
             return;
         }
         
-        // Ordre des matières (défini)
-        const orderMatiere = [
-            "Finances Publiques", "Économie Monétaire", "Comptabilité Analytique",
-            "Sociologie Économique", "Statistiques & Échantillonnage", "Français / Méthodologie", "Autre"
-        ];
-        const sortedSubjects = Array.from(grouped.keys()).sort((a,b) => {
-            const idxA = orderMatiere.indexOf(a);
-            const idxB = orderMatiere.indexOf(b);
-            if(idxA === -1 && idxB === -1) return a.localeCompare(b);
-            if(idxA === -1) return 1;
-            if(idxB === -1) return -1;
-            return idxA - idxB;
+        const grouped = new Map();
+        for (const link of filtered) {
+            if (!grouped.has(link.subject)) grouped.set(link.subject, []);
+            grouped.get(link.subject).push(link);
+        }
+        
+        const order = ["Finances Publiques", "Économie Monétaire", "Comptabilité Analytique", "Sociologie Économique", "Statistiques & Échantillonnage", "Français / Méthodologie", "Autre"];
+        const sorted = Array.from(grouped.keys()).sort((a,b) => {
+            let ia = order.indexOf(a); if(ia===-1) ia=999;
+            let ib = order.indexOf(b); if(ib===-1) ib=999;
+            return ia-ib;
         });
         
-        for (const subject of sortedSubjects) {
-            const links = grouped.get(subject);
-            const sectionDiv = document.createElement("div");
-            sectionDiv.className = "subject-section";
-            
-            // Couleur de bordure selon matière
+        for (const subject of sorted) {
+            const items = grouped.get(subject);
+            const section = document.createElement("div");
+            section.className = "subject-section";
             let borderColor = "#2c9e7c";
-            let iconSubject = "📘";
-            if(subject === "Finances Publiques") { borderColor = "#d4af37"; iconSubject = "💰"; }
-            else if(subject === "Économie Monétaire") { borderColor = "#2c7da0"; iconSubject = "🏦"; }
-            else if(subject === "Comptabilité Analytique") { borderColor = "#5e9b8c"; iconSubject = "📊"; }
-            else if(subject === "Sociologie Économique") { borderColor = "#c44569"; iconSubject = "👥"; }
-            else if(subject === "Statistiques & Échantillonnage") { borderColor = "#3498db"; iconSubject = "📈"; }
-            else if(subject === "Français / Méthodologie") { borderColor = "#9b59b6"; iconSubject = "📖"; }
+            if(subject === "Finances Publiques") borderColor="#d4af37";
+            else if(subject === "Économie Monétaire") borderColor="#2c7da0";
+            else if(subject === "Comptabilité Analytique") borderColor="#5e9b8c";
+            else if(subject === "Sociologie Économique") borderColor="#c44569";
+            else if(subject === "Statistiques & Échantillonnage") borderColor="#3498db";
+            else if(subject === "Français / Méthodologie") borderColor="#9b59b6";
             
-            const headerDiv = document.createElement("div");
-            headerDiv.className = "subject-header";
-            headerDiv.style.borderLeftColor = borderColor;
-            headerDiv.innerHTML = `
-                <h2>${iconSubject} ${subject}</h2>
-                <span class="subject-count">${links.length} ressource${links.length > 1 ? 's' : ''}</span>
+            section.innerHTML = `
+                <div class="subject-header" style="border-left-color: ${borderColor};">
+                    <h2>${getSubjectIcon(subject)} ${subject}</h2>
+                    <span class="subject-count">${items.length} ressource${items.length>1?'s':''}</span>
+                </div>
+                <div class="links-grid" id="grid-${subject.replace(/\s/g,'')}"></div>
             `;
-            
-            const gridDiv = document.createElement("div");
-            gridDiv.className = "links-grid";
-            
-            links.forEach((link, idxInGroup) => {
-                const card = createCardElement(link, linksArray.findIndex(l => l.url === link.url));
-                gridDiv.appendChild(card);
-            });
-            
-            sectionDiv.appendChild(headerDiv);
-            sectionDiv.appendChild(gridDiv);
-            container.appendChild(sectionDiv);
+            container.appendChild(section);
+            const grid = section.querySelector(".links-grid");
+            items.forEach(link => { grid.appendChild(createCard(link)); });
         }
     }
     
-    // Création d'une carte
-    function createCardElement(link, globalIndex) {
+    function getSubjectIcon(subject) {
+        const icons = { "Finances Publiques":"💰","Économie Monétaire":"🏦","Comptabilité Analytique":"📊","Sociologie Économique":"👥","Statistiques & Échantillonnage":"📈","Français / Méthodologie":"📖","Autre":"📁" };
+        return icons[subject] || "📘";
+    }
+    
+    function getIconClass(title) {
+        const t = title.toLowerCase();
+        if(t.includes("qcm")||t.includes("quiz")) return "fa-question-circle";
+        if(t.includes("compta")) return "fa-calculator";
+        if(t.includes("finance")) return "fa-landmark";
+        if(t.includes("monétaire")) return "fa-coins";
+        if(t.includes("sociologie")) return "fa-users";
+        if(t.includes("échantillonnage")) return "fa-chart-line";
+        return "fa-book-open";
+    }
+    
+    function truncateUrl(url, max=60) { return url.length > max ? url.substring(0,max)+"..." : url; }
+    function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+    
+    function createCard(link) {
         const card = document.createElement("div");
-        card.className = "resource-card";
-        card.addEventListener("click", (e) => {
-            if (e.target.closest('.card-actions')) return;
-            window.open(link.url, "_blank", "noopener noreferrer");
-        });
+        card.className = `resource-card ${link.isFavorite ? 'favorite' : ''} ${link.isHidden ? 'hidden' : ''}`;
         
-        const iconClass = getIconClass(link.title);
+        const mainDiv = document.createElement("div");
+        mainDiv.className = "card-main";
+        
         const infoDiv = document.createElement("div");
         infoDiv.className = "card-info";
+        infoDiv.addEventListener("click", () => { if(!link.isHidden) window.open(link.url, "_blank"); });
+        const iconClass = getIconClass(link.title);
         infoDiv.innerHTML = `
             <div class="card-icon"><i class="fas ${iconClass}"></i></div>
             <div class="card-text">
                 <div class="card-title">${escapeHtml(link.title)}</div>
                 <div class="card-meta">
-                    <span><i class="fas fa-calendar-alt"></i> ${link.createdAt || "Date inconnue"}</span>
+                    <span><i class="fas fa-calendar-alt"></i> ${link.createdAt}</span>
                     <span><i class="fas fa-folder"></i> ${link.subject}</span>
                 </div>
                 <div class="card-url" title="${escapeHtml(link.url)}">${truncateUrl(link.url)}</div>
@@ -694,58 +822,47 @@
         
         const actionsDiv = document.createElement("div");
         actionsDiv.className = "card-actions";
+        
+        const favBtn = document.createElement("button");
+        favBtn.className = `action-btn fav-btn ${link.isFavorite ? 'active-fav' : ''}`;
+        favBtn.innerHTML = '<i class="fas fa-star"></i>';
+        favBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleFavorite(link.id); });
+        
+        const hideBtn = document.createElement("button");
+        hideBtn.className = `action-btn hide-btn ${link.isHidden ? 'active-hide' : ''}`;
+        hideBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        hideBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleHidden(link.id); });
+        
         const editBtn = document.createElement("button");
         editBtn.className = "action-btn edit-btn";
         editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-        editBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            openEditModal(globalIndex);
-        });
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "action-btn delete-btn";
-        deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-        deleteBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            if(confirm(`Supprimer "${link.title}" ?`)) {
-                linksArray.splice(globalIndex, 1);
-                saveToLocalStorage();
-                renderDashboard();
-            }
-        });
+        editBtn.addEventListener("click", (e) => { e.stopPropagation(); openEditModal(link.id); });
+        
+        const delBtn = document.createElement("button");
+        delBtn.className = "action-btn delete-btn";
+        delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        delBtn.addEventListener("click", (e) => { e.stopPropagation(); deleteLink(link.id); });
+        
+        actionsDiv.appendChild(favBtn);
+        actionsDiv.appendChild(hideBtn);
         actionsDiv.appendChild(editBtn);
-        actionsDiv.appendChild(deleteBtn);
-        card.appendChild(infoDiv);
-        card.appendChild(actionsDiv);
+        actionsDiv.appendChild(delBtn);
+        mainDiv.appendChild(infoDiv);
+        mainDiv.appendChild(actionsDiv);
+        card.appendChild(mainDiv);
+        
+        // Ajout de la zone de notes
+        const noteEditor = createNoteEditor(link.id, link.note);
+        card.appendChild(noteEditor);
+        
         return card;
     }
     
-    function getIconClass(title) {
-        const t = title.toLowerCase();
-        if(t.includes("qcm") || t.includes("quiz")) return "fa-question-circle";
-        if(t.includes("compta") || t.includes("analytique")) return "fa-calculator";
-        if(t.includes("finance")) return "fa-landmark";
-        if(t.includes("monétaire")) return "fa-coins";
-        if(t.includes("sociologie")) return "fa-users";
-        if(t.includes("échantillonnage")) return "fa-chart-line";
-        return "fa-book-open";
-    }
-    
-    function truncateUrl(url, max=55) {
-        return url.length > max ? url.substring(0,max)+"..." : url;
-    }
-    
-    function escapeHtml(str) {
-        if(!str) return "";
-        return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
-            return m;
-        });
-    }
-    
-    // Gestion édition
-    let currentEditIndex = null;
+    // Initialisation et event listeners
+    const newTitleInput = document.getElementById("newLinkTitle");
+    const newUrlInput = document.getElementById("newLinkUrl");
+    const newLinkSubject = document.getElementById("newLinkSubject");
+    const addBtn = document.getElementById("addLinkBtn");
     const editModal = document.getElementById("editModal");
     const editTitleInput = document.getElementById("editTitle");
     const editUrlInput = document.getElementById("editUrl");
@@ -753,58 +870,29 @@
     const closeModalBtn = document.getElementById("closeModalBtn");
     const saveEditBtn = document.getElementById("saveEditBtn");
     
-    function openEditModal(index) {
-        if(index < 0 || index >= linksArray.length) return;
-        currentEditIndex = index;
-        const link = linksArray[index];
-        editTitleInput.value = link.title;
-        editUrlInput.value = link.url;
-        editSubjectSelect.value = link.subject;
-        editModal.style.display = "flex";
-    }
-    
-    function closeEditModal() {
-        editModal.style.display = "none";
-        currentEditIndex = null;
-    }
-    
-    function saveEdit() {
-        if(currentEditIndex === null) return;
-        const newTitle = editTitleInput.value.trim();
-        let newUrl = editUrlInput.value.trim();
-        const newSubject = editSubjectSelect.value;
-        if(!newTitle) { alert("Titre requis"); return; }
-        if(!newUrl) { alert("URL requise"); return; }
-        if(!newUrl.startsWith("http")) newUrl = "https://" + newUrl;
-        const duplicate = linksArray.findIndex((l, idx) => idx !== currentEditIndex && l.url === newUrl);
-        if(duplicate !== -1) { alert("URL déjà utilisée"); return; }
-        linksArray[currentEditIndex] = {
-            ...linksArray[currentEditIndex],
-            title: newTitle,
-            url: newUrl,
-            subject: newSubject
-        };
-        saveToLocalStorage();
-        renderDashboard();
-        closeEditModal();
-    }
-    
-    // Initialisation
-    const newTitleInput = document.getElementById("newLinkTitle");
-    const newUrlInput = document.getElementById("newLinkUrl");
-    const newLinkSubject = document.getElementById("newLinkSubject");
-    const addBtn = document.getElementById("addLinkBtn");
-    
     function init() {
         loadFromLocalStorage();
         renderDashboard();
+        
         addBtn.addEventListener("click", addNewLink);
         [newTitleInput, newUrlInput].forEach(inp => inp.addEventListener("keypress", e => { if(e.key==="Enter") addNewLink(); }));
+        
+        // Filtres
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.getAttribute("data-filter");
+                renderDashboard();
+            });
+        });
+        
         closeModalBtn.addEventListener("click", closeEditModal);
         saveEditBtn.addEventListener("click", saveEdit);
-        window.addEventListener("click", e => { if(e.target === editModal) closeEditModal(); });
-        window.addEventListener("keydown", e => { if(e.key==="Escape" && editModal.style.display==="flex") closeEditModal(); });
+        window.addEventListener("click", (e) => { if(e.target === editModal) closeEditModal(); });
+        window.addEventListener("keydown", (e) => { if(e.key==="Escape" && editModal.style.display==="flex") closeEditModal(); });
     }
+    
     init();
 </script>
 </body>
