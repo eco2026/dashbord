@@ -249,7 +249,7 @@
         </div>
     </div>
 
-    <!-- Zone de déverrouillage - TOUTE MODIFICATION NÉCESSITE LE CODE 1980 -->
+    <!-- Zone de déverrouillage - TOUTE MODIFICATION NÉCESSITE LE CODE -->
     <div class="unlock-area">
         <div class="unlock-status">
             <i class="fas" id="lockIcon"></i>
@@ -313,7 +313,7 @@
 <script>
     let linksArray = [];
     let currentFilter = "all";
-    let isUnlocked = false;  // les modifications nécessitent le code 1980
+    let isUnlocked = false;  // les modifications nécessitent le code 
     const STORAGE_KEY = "eco_dashboard_protected_v1";
     const SECRET_CODE = "1980";
 
@@ -684,7 +684,7 @@
         return card;
     }
 
-    // Gestion du déverrouillage avec le code 1980
+    // Gestion du déverrouillage avec le code 
     function unlockSession() {
         const codeInput = document.getElementById("adminCodeInput");
         if (codeInput.value === SECRET_CODE) {
